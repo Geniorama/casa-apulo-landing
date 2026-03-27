@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \":*)",
+      "Bash(powershell -File:*)",
+      "WebFetch(domain:www.airbnb.com.co)",
+      "WebFetch(domain:www.booking.com)"
+    ]
+  }
+}
