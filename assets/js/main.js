@@ -57,3 +57,92 @@ const animateOnScroll = () => {
 };
 window.addEventListener('scroll', animateOnScroll, { passive: true });
 window.addEventListener('load', animateOnScroll);
+
+// Lightbox
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item[data-lightbox]'));
+const lightbox     = document.getElementById('lightbox');
+const lightboxImg  = document.getElementById('lightboxImg');
+const lightboxDots = document.getElementById('lightboxDots');
+let currentIndex   = 0;
+
+// Collect image data
+const galleryData = galleryItems.map(item => ({
+  src: item.querySelector('img').src,
+  alt: item.querySelector('img').alt,
+  caption: item.querySelector('.gallery-caption').textContent.trim()
+}));
+
+// Build dots
+galleryData.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'lightbox-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', 'Foto ' + (i + 1));
+  dot.addEventListener('click', () => goTo(i));
+  lightboxDots.appendChild(dot);
+});
+
+function updateDots() {
+  lightboxDots.querySelectorAll('.lightbox-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === currentIndex);
+  });
+}
+
+function goTo(index) {
+  currentIndex = (index + galleryData.length) % galleryData.length;
+  const data = galleryData[currentIndex];
+  updateDots();
+
+  lightboxImg.classList.add('loading');
+
+  setTimeout(() => {
+    lightboxImg.src = data.src;
+    lightboxImg.alt = data.alt;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        lightboxImg.classList.remove('loading');
+      });
+    });
+  }, 350); // espera a que termine el fade-out (igual que la transición CSS)
+}
+
+function openLightbox(index) {
+  currentIndex = index;
+  const data = galleryData[currentIndex];
+  lightboxImg.src = data.src;
+  lightboxImg.alt = data.alt;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  updateDots();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Open on click
+galleryItems.forEach((item, i) => {
+  item.addEventListener('click', () => openLightbox(i));
+});
+
+// Controls
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxBackdrop').addEventListener('click', closeLightbox);
+document.getElementById('lightboxPrev').addEventListener('click', () => goTo(currentIndex - 1));
+document.getElementById('lightboxNext').addEventListener('click', () => goTo(currentIndex + 1));
+
+// Touch swipe
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) goTo(currentIndex + (diff > 0 ? 1 : -1));
+}, { passive: true });
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+  if (e.key === 'ArrowLeft')  goTo(currentIndex - 1);
+  if (e.key === 'Escape')     closeLightbox();
+});

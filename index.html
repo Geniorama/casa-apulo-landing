@@ -66,7 +66,7 @@
     <div class="hero-right">
       <div class="hero-video">
         <video autoplay muted loop playsinline poster="img/video-poster.jpg">
-          <source src="/assets/video/Video.mp4" type="video/mp4">
+          <source src="assets/video/Video.mp4" type="video/mp4">
         </video>
       </div>
       <div class="hero-badges">
@@ -111,25 +111,25 @@
     <h2 class="section-title">Esto no es un hotel. Es TU casa para descansar.</h2>
     <p class="section-sub">Mir&aacute; donde vas a estar. Cada rinc&oacute;n dise&ntilde;ado para que disfrutes.</p>
     <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/b8cb432a-f524-48a1-80bf-772895b09b89.jpeg" alt="Piscina privada Condo Apulo" loading="lazy">
+      <div class="gallery-item" data-lightbox="0">
+        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/3daed73a-9d0f-4153-b318-0a17a243d0ee.jpeg" alt="Piscina privada Condo Apulo" loading="lazy">
         <div class="gallery-caption">Tu piscina privada. Sin compartir con nadie.</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item" data-lightbox="1">
         <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/705b16a5-5f8d-42d6-b3f2-d07342e739de.jpeg" alt="Jacuzzi de noche" loading="lazy">
         <div class="gallery-caption">Jacuzzi bajo las estrellas.</div>
       </div>
-      <div class="gallery-item">
-        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/2b5aaa71-4bdf-4f17-a004-2ded72e6f1f2.jpeg" alt="Sala interior" loading="lazy">
+      <div class="gallery-item" data-lightbox="2">
+        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/e9a49d35-3ca1-4b70-a1c2-3f2a288cf7bc.jpeg" alt="Sala interior" loading="lazy">
         <div class="gallery-caption">Amplia, c&oacute;moda y con WiFi de verdad.</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item" data-lightbox="3">
         <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/31c947c7-68b1-4f1f-8cc8-c9e6dee5c15e.jpeg" alt="Habitaci&oacute;n" loading="lazy">
         <div class="gallery-caption">4 habitaciones con ba&ntilde;o privado y A/C.</div>
       </div>
-      <div class="gallery-item">
-        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/6965f269-cda6-4dbf-bd2a-05c5f1ed2501.jpeg" alt="BBQ y zona social" loading="lazy">
-        <div class="gallery-caption">Turco + BBQ para el asado del s&aacute;bado.</div>
+      <div class="gallery-item" data-lightbox="4">
+        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1521161036060180800/original/e5fb7d03-b933-4135-8e78-fad4533caef5.jpeg" alt="BBQ y zona social" loading="lazy">
+        <div class="gallery-caption">Turco + BBQ para el asado.</div>
       </div>
     </div>
   </div>
@@ -375,6 +375,24 @@
   </div>
   <p class="copyright">&copy; 2026 Condo Apulo. Todos los derechos reservados. &middot; Desarrollado por <a href="https://geniorama.co" target="_blank" style="color:rgba(255,255,255,.45);transition:color .25s" onmouseover="this.style.color='rgba(255,255,255,.75)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Geniorama</a></p>
 </footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+  <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Foto siguiente">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="lightbox-dots" id="lightboxDots"></div>
+</div>
 
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="assets/js/main.js"></script>
