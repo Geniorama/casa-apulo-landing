@@ -42,7 +42,7 @@ a{text-decoration:none;color:inherit}
 .btn-airbnb:hover{background:var(--airbnb-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,90,95,.4)}
 .btn-wa{background:var(--green-wa);color:var(--white)}
 .btn-wa:hover{background:var(--green-wa-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.4);scale:1.05;}
-.precio-noche{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:1.05rem;color:var(--dark);justify-content:center;}
+.precio-noche{display:inline-flex;align-items:flex-start;gap:4px;font-weight:700;font-size:1.05rem;color:var(--dark);justify-content:center; flex-direction: column;}
 .precio-noche strong{font-size:1.15rem}
 .precio-noche small{font-weight:400;font-size:.85rem;color:var(--gray-500)}
 .final-cta .precio-noche,.hero .precio-noche{color:var(--white)}
@@ -56,6 +56,10 @@ a{text-decoration:none;color:inherit}
 .microcopy{font-size:.82rem;color:var(--gray-400);margin-top:12px}
 
 .cta-group{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:6px}
+
+.precio-capacidad{
+  display: block;
+}
 
 /* ===== HERO ===== */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
@@ -224,6 +228,7 @@ a{text-decoration:none;color:inherit}
 @media(max-width:480px){
   .lightbox-content{padding:48px 16px}
   .lightbox-btn{display:none}
+  .precio-noche{justify-content: center; align-items: center;}
 }
 
 /* ===== FOOTER ===== */
